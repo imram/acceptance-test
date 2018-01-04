@@ -6,20 +6,20 @@ Feature: Checking Eligibility
   Scenario: Checking Baggage Eligibility within check in window
     Given Passenger with following reservation wants to check bag online
       | firstName | lastName | origin | destination | departureDate   | journeyType |
-      | John      | Smith    | DFW    | HOU         | TODAY + 4 Hours | OW          |
+      | John      | Smith    | DFW    | HOU         | NOW + 4 Hours | OW          |
     When I check bag eligibility for above passenger
     Then I should be able to see customer is eligible to buy bag for given slice
 
   Scenario: Checking Baggage Eligibility outside check in window
     Given Passenger with following reservation wants to check bag online
       | firstName | lastName | origin  | destination | departureDate                  | journeyType |
-      | Mary      | Smith    | DFW,HOU | HOU,JFK     | TODAY + 2 Days, TODAY + 2 Days | OW          |
+      | Mary      | Smith    | DFW,HOU | HOU,JFK     | NOW + 2 Days, NOW + 2 Days | OW          |
     When I check bag eligibility for above passenger
     Then I should be able to see customer is not eligible to buy bag for given slice
 
   Scenario: Checking Baggage Eligibility when slice with Other Airline
     Given Passenger with following reservation wants to check bag online
       | firstName | lastName | origin | destination | departureDate | journeyType | Carrier |
-      | Danial      | Smith    | DFW    | HOU         | TODAY + 1     | OW          | OA      |
+      | Danial      | Smith    | DFW    | HOU         | NOW + 1     | OW          | OA      |
     When I check bag eligibility for above passenger
     Then I should be able to see customer is not eligible to buy bag for given slice
